@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tu Nombre — Portafolio</title>
+  <meta name="description" content="Portafolio personal: proyectos, experiencia y contacto." />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#111824; --muted:#9fb0c3; --text:#e6eef7; --acc:#4ea9ff; --acc-2:#9dffad;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:linear-gradient(180deg,#071019, #0b0f14 30%, #0b0f14), url(''); color:var(--text); line-height:1.6}
+    a{color:var(--acc); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px}
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .avatar{width:56px;height:56px;border-radius:50%; background:linear-gradient(135deg,var(--acc),var(--acc-2)); box-shadow:var(--shadow)}
+    .brand h1{margin:0; font-size:22px}
+    .muted{color:var(--muted)}
+    nav{display:flex; gap:16px; flex-wrap:wrap}
+    .btn{display:inline-block; background:var(--acc); color:#001221; padding:10px 14px; border-radius:12px; font-weight:600}
+    .btn.secondary{background:#1c2736; color:var(--text); border:1px solid #263243}
+
+    .hero{margin-top:24px; display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:stretch}
+    .card{background:linear-gradient(180deg,#101829 0%, #0f1623 100%); border:1px solid #1f2a3b; border-radius:var(--radius); box-shadow:var(--shadow)}
+    .hero .card{padding:28px}
+    .title{font-size:36px; line-height:1.2; margin:0 0 10px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px}
+    .badge{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #2a3951; background:#0d1522; color:var(--muted)}
+    .kpi{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px}
+    .kpi .item{background:#0e1522; border:1px solid #1e2b40; border-radius:14px; padding:14px; text-align:center}
+    .kpi b{font-size:22px; display:block}
+
+    section{margin-top:34px}
+    h2{font-size:24px; margin:0 0 10px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .project{overflow:hidden}
+    .project .thumb{height:140px; background:#0b1220; border-bottom:1px solid #1d2940}
+    .project .body{padding:16px}
+    .project h3{margin:0 0 6px; font-size:18px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    .tag{font-size:11px; padding:4px 8px; border-radius:999px; background:#0e1522; border:1px solid #20304a; color:#9db2c7}
+
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .list{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+    .list li{padding:12px 14px; border:1px solid #1f2a3b; border-radius:12px; background:#0d1421}
+
+    footer{margin:40px 0 20px; text-align:center; color:var(--muted)}
+    .social{display:flex; gap:12px; justify-content:center; margin-top:10px}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <h1>Tu Nombre</h1>
+          <div class="muted">Ingeniería | Energía | Sostenibilidad</div>
+        </div>
+      </div>
+      <nav>
+        <a class="btn secondary" href="#proyectos">Proyectos</a>
+        <a class="btn secondary" href="#sobre-mi">Sobre mí</a>
+        <a class="btn" href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <article class="card">
+        <h2 class="title">Construyendo soluciones que combinan <span style="color:var(--acc)">tecnología</span> y <span style="color:var(--acc-2)">sostenibilidad</span>.</h2>
+        <p class="muted">Breve resumen en 2–3 líneas sobre tu experiencia e intereses. Ej.: "Soy ingeniero con foco en H2V y Power‑to‑X. Me entusiasma crear productos y análisis que aceleren la transición energética".</p>
+        <div class="badges">
+          <span class="badge">Disponible para trabajar</span>
+          <span class="badge">Remoto / Híbrido</span>
+          <span class="badge">Open‑Source</span>
+        </div>
+        <div class="kpi">
+          <div class="item"><b>10+</b><span class="muted">proyectos</span></div>
+          <div class="item"><b>5</b><span class="muted">papers</span></div>
+          <div class="item"><b>8 años</b><span class="muted">experiencia</span></div>
+        </div>
+      </article>
+      <aside class="card">
+        <h2 style="margin:0 0 8px">Destacados</h2>
+        <ul class="list">
+          <li><b>e‑GL para transición energética</b> — estudio técnico‑económico y pruebas de combustión.</li>
+          <li><b>MOOC H2V & PtX</b> — diseño de curso abierto con +5k inscritos.</li>
+          <li><b>SGI ISO 9001/14001/45001</b> — implementación y auditoría interna.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+      <div class="grid">
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="Miniatura del proyecto 1"></div>
+          <div class="body">
+            <h3>Proyecto 1</h3>
+            <p class="muted">Descripción breve del proyecto: objetivos, impacto y tu rol.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Data</span><span class="tag">H2V</span>
+            </div>
+            <p style="margin-top:10px"><a href="#" target="_blank" rel="noopener">Ver repositorio →</a></p>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="Miniatura del proyecto 2"></div>
+          <div class="body">
+            <h3>Proyecto 2</h3>
+            <p class="muted">Qué problema resuelve y resultado clave (métrica o demo).</p>
+            <div class="tags">
+              <span class="tag">Power BI</span><span class="tag">Dashboards</span>
+            </div>
+            <p style="margin-top:10px"><a href="#" target="_blank" rel="noopener">Ver repositorio →</a></p>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="Miniatura del proyecto 3"></div>
+          <div class="body">
+            <h3>Proyecto 3</h3>
+            <p class="muted">Stack, desafíos y aprendizajes principales.</p>
+            <div class="tags">
+              <span class="tag">GRI</span><span class="tag">ESG</span>
+            </div>
+            <p style="margin-top:10px"><a href="#" target="_blank" rel="noopener">Ver repositorio →</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="sobre-mi" class="two">
+      <div class="card" style="padding:20px">
+        <h2>Sobre mí</h2>
+        <p class="muted">Escribe 5–7 líneas con tu historia profesional, áreas de interés y qué te gustaría construir. Menciona industrias, tecnologías y tipos de proyectos.</p>
+        <ul class="list" style="margin-top:12px">
+          <li>⚙️ Ingeniería: proyectos, automatización, datos.</li>
+          <li>🌱 Energía: H2V, PtX, eficiencia, emisiones.</li>
+          <li>📊 Gestión: KPIs, mejora continua, ISO/SGI.</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:20px">
+        <h2>Habilidades</h2>
+        <ul class="list">
+          <li>Python, SQL, Power BI, Excel avanzado</li>
+          <li>GRI/ISSB, ESG, auditorías internas</li>
+          <li>Proyectos: PMI, Kanban, Lean</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="card" style="padding:20px">
+        <h2>Contacto</h2>
+        <p>¿Te interesa colaborar? Escríbeme:</p>
+        <p><a class="btn" href="mailto:tu.email@ejemplo.com">tu.email@ejemplo.com</a></p>
+        <div class="social">
+          <a href="https://github.com/tuusuario" target="_blank" rel="noopener">GitHub</a>
+          <span class="muted">·</span>
+          <a href="https://www.linkedin.com/in/tuusuario" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="muted">·</span>
+          <a href="#" target="_blank" rel="noopener">CV (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>© <span id="y"></span> Tu Nombre. Hecho con ♥ y GitHub Pages.</small>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
