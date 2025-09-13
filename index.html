@@ -230,12 +230,12 @@
       </div>
     </section>
 
+    <!-- === Files — SOLO carpeta bootcamp === -->
     <section id="files" class="card" style="padding:20px">
       <h2>Files — Bootcamp</h2>
       <div id="filesTree" role="tree" aria-label="Bootcamp files"></div>
       <p class="muted" id="filesNote" style="margin-top:10px"></p>
     </section>
-
 
     <section id="about" class="card">
       <h2>About Me</h2>
@@ -298,97 +298,95 @@
       });
     });
 
-    // ===== Files / Archivos del repo (via GitHub public API) =====
-    const OWNER = "ignaciovermon";
-    const REPO  = "ignaciovermon.github.io";
+    // ===== Files — SOLO carpeta bootcamp (GitHub public API) =====
+    const OWNER  = "ignaciovermon";
+    const REPO   = "ignaciovermon.github.io";
     const BRANCH = "main";
-    const SITE_BASE = "https://ignaciovermon.github.io"; // user site root
+    const SITE_BASE = "https://ignaciovermon.github.io";
+    const ROOT_DIR  = "bootcamp"; // único folder a mostrar
 
     const $tree = document.getElementById('filesTree');
     const $note = document.getElementById('filesNote');
 
     function fmtBytes(bytes){
       if(bytes == null) return '';
-      const units = ['B','KB','MB','GB']; let i=0, n=bytes;
-      while(n>=1024 && i<units.length-1){ n/=1024; i++; }
-      return n.toFixed(n<10 && i>0 ? 1 : 0) + ' ' + units[i];
+      const u=['B','KB','MB','GB']; let i=0, n=bytes;
+      while(n>=1024 && i<u.length-1){ n/=1024; i++; }
+      return n.toFixed(n<10 && i>0 ? 1 : 0) + ' ' + u[i];
     }
 
-    async function fetchFolder(path=""){
+    async function fetchFolder(path){
       const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`;
       const res = await fetch(url, {headers:{'Accept':'application/vnd.github+json'}});
       if(!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
       const data = await res.json();
-      // ensure directories first then files
-      return data.sort((a,b)=>{
-        if(a.type!==b.type) return a.type==='dir'?-1:1;
-        return a.name.localeCompare(b.name);
-      });
+      return data.sort((a,b)=> a.type===b.type ? a.name.localeCompare(b.name) : (a.type==='dir'?-1:1));
     }
 
     function rowFile(item, parentPath){
       const fullPath = parentPath ? `${parentPath}/${item.name}` : item.name;
-      const siteURL = `${SITE_BASE}/${fullPath}`;
-      const rawURL  = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${fullPath}`;
+      const siteURL  = `${SITE_BASE}/${fullPath}`;
+      const rawURL   = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${fullPath}`;
       const wrap = document.createElement('div');
       wrap.className = 'file-row';
       wrap.innerHTML = `
-        <span class="badge-mini">${item.type === 'dir' ? 'DIR' : 'FILE'}</span>
+        <span class="badge-mini">FILE</span>
         <span class="file-name">${item.name}</span>
-        <span class="file-size">${item.type==='file' ? fmtBytes(item.size) : ''}</span>
+        <span class="file-size">${fmtBytes(item.size)}</span>
         <span class="file-actions">
-          ${item.type==='file' ? `<a href="${siteURL}" target="_blank" rel="noopener">open</a>` : ''}
-          <a href="${item.type==='file' ? rawURL : item.html_url}" target="_blank" rel="noopener">${item.type==='file' ? 'raw' : 'view'}</a>
+          <a href="${siteURL}" target="_blank" rel="noopener">open</a>
+          <a href="${rawURL}"  target="_blank" rel="noopener">raw</a>
         </span>
       `;
-      return {wrap, fullPath};
+      return wrap;
     }
 
-    function folderBlock(name){
-      const block = document.createElement('div');
-      block.className = 'file-row folder collapsed';
-      block.innerHTML = `
-        <span class="chev">▾</span>
-        <span class="badge-mini">DIR</span>
-        <span class="file-name"><b>${name}</b></span>
-      `;
-      const children = document.createElement('div');
-      children.className = 'tree-indent';
-      children.hidden = true;
-      return {block, children};
+    function folderHeader(name){
+      const box = document.createElement('div');
+      box.className = 'file-row folder collapsed';
+      box.innerHTML = `<span class="chev">▾</span> <span class="badge-mini">DIR</span> <span class="file-name"><b>${name}</b></span>`;
+      const inner = document.createElement('div');
+      inner.className = 'tree-indent';
+      inner.hidden = true;
+      return {box, inner};
     }
 
-    async function renderTree(container, path=""){
-      try{
-        const list = await fetchFolder(path);
-        for(const item of list){
-          if(item.type === 'dir'){
-            const {block, children} = folderBlock(item.name);
-            container.appendChild(block);
-            container.appendChild(children);
-            block.addEventListener('click', async ()=>{
-              const collapsed = children.hidden;
-              children.hidden = !collapsed;
-              block.classList.toggle('collapsed', !collapsed);
-              // lazy load
-              if(collapsed && !children.hasChildNodes()){
-                const sub = document.createElement('div');
-                children.appendChild(sub);
-                await renderTree(sub, path ? `${path}/${item.name}` : item.name);
-              }
-            }, {once:false});
-          }else{
-            const {wrap} = rowFile(item, path);
-            container.appendChild(wrap);
-          }
+    async function renderChildren(container, path){
+      const list = await fetchFolder(path);
+      for(const it of list){
+        if(it.type === 'dir'){
+          const {box, inner} = folderHeader(it.name);
+          container.appendChild(box); container.appendChild(inner);
+          box.addEventListener('click', async ()=>{
+            const willOpen = inner.hidden;
+            inner.hidden = !willOpen;
+            box.classList.toggle('collapsed', !willOpen);
+            if(willOpen && !inner.hasChildNodes()){
+              await renderChildren(inner, `${path}/${it.name}`);
+            }
+          });
+        }else{
+          container.appendChild(rowFile(it, path));
         }
-        $note.textContent = `Origen: https://github.com/${OWNER}/${REPO}/tree/${BRANCH}`;
-      }catch(err){
-        $tree.innerHTML = `<p class="muted">No se pudo cargar el árbol de archivos. ${err.message}</p>`;
       }
     }
 
-    renderTree($tree, ""); // root
+    function renderOnlyBootcamp(){
+      $tree.innerHTML = '';
+      const {box, inner} = folderHeader(ROOT_DIR);
+      $tree.appendChild(box); $tree.appendChild(inner);
+      box.addEventListener('click', async ()=>{
+        const willOpen = inner.hidden;
+        inner.hidden = !willOpen;
+        box.classList.toggle('collapsed', !willOpen);
+        if(willOpen && !inner.hasChildNodes()){
+          await renderChildren(inner, ROOT_DIR);
+        }
+      }, {once:false});
+      $note.textContent = `Origen: https://github.com/${OWNER}/${REPO}/tree/${BRANCH}/${ROOT_DIR}`;
+    }
+
+    renderOnlyBootcamp();
   </script>
 </body>
 </html>
