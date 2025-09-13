@@ -6,63 +6,52 @@
   <title>Ignacio Verdugo, PhD — Portfolio</title>
   <meta name="description" content="Portfolio of Ignacio Verdugo, PhD: projects, research, publications, and professional experience." />
   <meta name="theme-color" content="#0b0f14" />
-  <!-- Open Graph -->
+  <link rel="preload" as="image" href="Foto_CV.jpg" imagesrcset="Foto_CV.jpg 1x, Foto_CV.jpg 2x" />
   <meta property="og:title" content="Ignacio Verdugo, PhD — Portfolio">
   <meta property="og:description" content="Green Hydrogen (H₂V), PtX, ESG & Digital Transformation.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/0?v=4">
+  <meta property="og:image" content="Foto_CV.jpg">
   <meta property="og:url" content="https://ignaciovermon.github.io/">
-  <!-- JSON-LD Person -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Ignacio Verdugo",
-    "jobTitle":"Industrial Engineer, PhD",
-    "email":"mailto:ignacio.vermon@gmail.com",
-    "url":"https://ignaciovermon.github.io/",
-    "sameAs": [
-      "https://github.com/ignaciovermon",
-      "https://www.linkedin.com/in/iverdugo",
-      "https://orcid.org/0000-0003-3835-6021"
-    ]
-  }
-  </script>
+
   <style>
     :root{
       --bg:#0b0f14; --card:#0f1724; --muted:#9fb0c3; --text:#e6eef7; --acc:#4ea9ff; --acc-2:#9dffad;
       --line:#1f2a3b; --chip:#0d1522; --radius:18px; --shadow:0 12px 30px rgba(0,0,0,.35);
+      --shimmer: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.08) 12%, transparent 24%);
     }
     @media (prefers-color-scheme: light){
       :root{ --bg:#f6f8fb; --card:#ffffff; --text:#0f1724; --muted:#607089; --line:#e6edf5; --chip:#f2f6fb; --acc:#0b77ff; --acc-2:#00b76f; }
     }
     *{box-sizing:border-box}
-    html,body{margin:0}
-    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(78,169,255,.18), transparent 50%),
-                  radial-gradient(900px 500px at 10% 10%, rgba(157,255,173,.10), transparent 50%),
-                  var(--bg);
-      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased}
-    a{color:var(--acc); text-decoration:none}
-    a:hover{text-decoration:underline}
+    html,body{margin:0; scroll-behavior:smooth}
+    body{
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;
+      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(78,169,255,.18), transparent 50%),
+        radial-gradient(900px 500px at 10% 10%, rgba(157,255,173,.10), transparent 50%),
+        var(--bg);
+      background-attachment: fixed;
+    }
+    a{color:var(--acc); text-decoration:none; background:linear-gradient(currentColor, currentColor) bottom left / 0 2px no-repeat}
+    a:hover{ text-decoration:none; background-size: 100% 2px; transition: background-size .35s ease }
+
     .wrap{max-width:1200px; margin:0 auto; padding:28px}
     header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:6px 0; position:sticky; top:0; backdrop-filter:blur(10px); background:color-mix(in oklab, var(--bg) 75%, transparent); border-bottom:1px solid var(--line); z-index:50}
     .brand{display:flex; align-items:center; gap:14px}
-    .avatar{width:56px;height:56px;border-radius:50%;
-      background: conic-gradient(from 200deg, var(--acc), var(--acc-2), var(--acc));
-      filter: saturate(120%); position:relative; overflow:hidden; box-shadow:var(--shadow)}
-    .avatar::after{content:""; position:absolute; inset:6px; border-radius:50%; background:var(--card)}
-    .brand h1{margin:0; font-size:22px}
+    .avatar{width:64px; height:64px; border-radius:50%; overflow:hidden; box-shadow:var(--shadow); position:relative; isolation:isolate}
+    .avatar::after{content:""; position:absolute; inset:0; background:var(--shimmer); background-repeat:no-repeat; background-size:200% 100%; animation:shine 2.2s linear infinite; opacity:.45}
+    @keyframes shine{to{background-position:-200% 0}}
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+
     .muted{color:var(--muted)}
     nav{display:flex; gap:10px; flex-wrap:wrap}
-    .btn{display:inline-flex; align-items:center; gap:8px; background:var(--acc); color:#001221; padding:10px 14px; border-radius:12px; font-weight:700; border:0}
-    .btn.secondary{background:var(--chip); color:var(--text); border:1px solid var(--line)}
-    .btn.ghost{background:transparent; border:1px solid var(--line); color:var(--text)}
-    .icon{width:18px; height:18px; display:inline-block}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:700; border:1px solid var(--line); background:var(--chip); color:var(--text)}
+    .btn.primary{background:var(--acc); color:#001221; border-color:transparent}
+    .btn.ghost{background:transparent}
 
     .hero{margin-top:26px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:stretch}
-    .card{background:linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, #000 8%), var(--card)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .hero .card{padding:28px}
+    .card{background:linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, #000 8%), var(--card)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; transform:translateY(10px); opacity:0}
     .title{font-size:38px; line-height:1.15; margin:0 0 10px}
     .underline{background:linear-gradient(90deg,var(--acc),var(--acc-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
     .badges{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px}
@@ -73,23 +62,18 @@
 
     section{margin-top:36px}
     h2{font-size:24px; margin:0 0 12px}
-    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .project{overflow:hidden; transform:translateY(8px); opacity:0; transition:transform .6s cubic-bezier(.2,.6,.2,1), opacity .6s}
-    .reveal{transform:none !important; opacity:1 !important}
-    .project .thumb{height:140px; background:
-       linear-gradient(120deg, color-mix(in oklab, var(--acc) 20%, transparent), transparent 60%),
-       repeating-linear-gradient(135deg, color-mix(in oklab, var(--line) 60%, transparent), color-mix(in oklab, var(--line) 60%, transparent) 2px, transparent 2px, transparent 6px);
-       border-bottom:1px solid var(--line)}
-    .project .body{padding:16px}
-    .project h3{margin:0 0 6px; font-size:18px}
-    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
-    .tag{font-size:11px; padding:3px 8px; border-radius:999px; background:var(--chip); border:1px solid var(--line); color:#9db2c7}
-    .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px}
 
-    .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .project{overflow:hidden; transform:translateY(12px) scale(.98); opacity:0; transition:transform .6s cubic-bezier(.2,.6,.2,1), opacity .6s}
+    .project .thumb{height:140px; border-radius:12px; background:
+       linear-gradient(120deg, color-mix(in oklab, var(--acc) 18%, transparent), transparent 60%),
+       repeating-linear-gradient(135deg, color-mix(in oklab, var(--line) 60%, transparent), color-mix(in oklab, var(--line) 60%, transparent) 2px, transparent 2px, transparent 6px);
+       margin-bottom:10px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{font-size:11px; padding:4px 8px; border-radius:999px; background:var(--chip); border:1px solid var(--line); color:#9db2c7}
+
     .list{list-style:none; padding:0; margin:0; display:grid; gap:10px}
-    .list li{padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:var(--chip)}
-    .chiprow{display:flex; gap:8px; flex-wrap:wrap}
+    .list li{padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--chip)}
 
     .timeline{position:relative; padding-left:22px}
     .timeline::before{content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:var(--line)}
@@ -99,27 +83,31 @@
 
     .skills{display:flex; flex-wrap:wrap; gap:10px}
     .skill{padding:10px 12px; border-radius:999px; background:var(--chip); border:1px solid var(--line)}
-    .contactgrid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
 
     footer{margin:42px 0 22px; text-align:center; color:var(--muted)}
-    .social{display:flex; gap:12px; justify-content:center; margin-top:10px}
 
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    /* hover tilt */
+    .tilt{transform-style:preserve-3d; will-change:transform}
+    .tilt:hover{transition:transform .12s linear}
+    .tilt > *{transform:translateZ(14px)}
 
-    /* Hover lift */
-    .hover-lift{transition:transform .35s ease, box-shadow .35s ease}
-    .hover-lift:hover{transform:translateY(-4px); box-shadow:0 14px 35px rgba(0,0,0,.25)}
+    /* reveal */
+    .reveal{transform:none !important; opacity:1 !important}
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .project, .hover-lift{transition:none}
-    }
+    /* Files tree */
+    .file-row{display:flex;align-items:center;gap:10px;padding:6px 8px;border:1px solid var(--line);border-radius:10px;background:var(--chip);margin:6px 0}
+    .file-name{flex:1;word-break:break-word}
+    .file-size{font-variant-numeric:tabular-nums;color:var(--muted)}
+    .file-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .folder{cursor:pointer;user-select:none}
+    .chev{display:inline-block;transition:transform .2s ease}
+    .collapsed .chev{transform:rotate(-90deg)}
+    .tree-indent{margin-left:28px;border-left:1px dashed var(--line);padding-left:12px}
+    .badge-mini{font-size:11px;padding:2px 6px;border-radius:999px;background:var(--chip);border:1px solid var(--line);color:#9db2c7}
 
     @media (max-width: 980px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
-      .two{grid-template-columns:1fr}
-      .contactgrid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -127,27 +115,28 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
+        <div class="avatar"><img src="Foto_CV.jpg" alt="Ignacio Verdugo portrait"></div>
         <div>
           <h1 style="margin:0">Ignacio Verdugo, PhD</h1>
           <div class="muted">Industrial Engineer | H₂V & PtX | ESG & ISO | Digital Transformation</div>
         </div>
       </div>
       <nav>
-        <a class="btn secondary" href="#projects">Projects</a>
-        <a class="btn secondary" href="#publications">Publications</a>
-        <a class="btn secondary" href="#experience">Experience</a>
-        <a class="btn secondary" href="#about">About</a>
-        <button class="btn ghost" id="themeBtn" aria-label="Toggle theme">🌓</button>
-        <a class="btn" href="#contact">Contact</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#bootcamp">Bootcamp</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="#experience">Experience</a>
+        <a class="btn" href="#files">Files</a>
+        <a class="btn" href="#about">About</a>
+        <a class="btn primary" href="#contact">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
-      <article class="card hover-lift">
+      <article class="card tilt">
         <h2 class="title">Driving <span class="underline">Innovation</span> for a <span class="underline">Sustainable Future</span></h2>
         <p class="muted">Industrial Engineer (MSc, PhD) with expertise in digital transformation, Industry 4.0, ESG frameworks, and sustainable fuels (H₂V, PtX, e-fuels). Led R&D with industry & academia to accelerate decarbonization.</p>
-        <div class="badges" aria-label="availability">
+        <div class="badges">
           <span class="badge">Open to Work</span>
           <span class="badge">Remote / Hybrid</span>
           <span class="badge">Academic & Industry</span>
@@ -157,178 +146,122 @@
           <div class="item"><b>9+</b><span class="muted">ISI Publications</span></div>
           <div class="item"><b>8 yrs</b><span class="muted">Experience</span></div>
         </div>
-        <div style="margin-top:14px" class="chiprow">
-          <a class="btn" href="Resume_Ignacio_Verdugo.pdf" target="_blank" rel="noopener">⬇ Download CV (EN)</a>
-          <a class="btn secondary" href="https://github.com/ignaciovermon" target="_blank" rel="noopener">GitHub Profile</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/iverdugo" target="_blank" rel="noopener">LinkedIn</a>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="Resume_Ignacio_Verdugo.pdf" target="_blank" rel="noopener">⬇ CV (EN)</a>
+          <a class="btn" href="CV_Ignacio_Verdugo.pdf" target="_blank" rel="noopener">⬇ CV (ES)</a>
+          <a class="btn" href="https://github.com/ignaciovermon" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/iverdugo" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </article>
 
-      <aside class="card hover-lift">
+      <aside class="card tilt">
         <h2 style="margin:0 0 8px">Highlights</h2>
         <ul class="list">
           <li><b>Renewable e-LPG (e-GL)</b> — PhD project with GASCO, carbon-neutral alternative to LPG.</li>
           <li><b>MOOC on H₂V & PtX</b> — designed/launched, +5,000 students enrolled.</li>
           <li><b>ISO 9001/14001/45001</b> — SGI implementation, internal audits & KPIs.</li>
         </ul>
-        <div class="chiprow" style="margin-top:10px">
-          <span class="badge">Python</span><span class="badge">SQL</span><span class="badge">Power BI</span>
-          <span class="badge">RETScreen</span><span class="badge">GRI/ISSB</span><span class="badge">PMI/Lean</span>
+        <div class="skills" style="margin-top:10px">
+          <span class="skill">Python</span><span class="skill">SQL</span><span class="skill">Power BI</span>
+          <span class="skill">RETScreen</span><span class="skill">GRI/ISSB</span><span class="skill">PMI/Lean</span>
         </div>
       </aside>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
-
-      <!-- filters -->
-      <div class="filters" aria-label="filters">
-        <button class="btn secondary" data-filter="all">All</button>
-        <button class="btn secondary" data-filter="energy">Energy</button>
-        <button class="btn secondary" data-filter="pTx">PtX</button>
-        <button class="btn secondary" data-filter="esg">ESG</button>
-        <button class="btn secondary" data-filter="data">Data/BI</button>
-      </div>
-
       <div class="grid" id="projectGrid">
-        <article class="card project hover-lift" data-tags="energy pTx">
-          <div class="thumb" role="img" aria-label="e-LPG project banner"></div>
-          <div class="body">
-            <h3>e-LPG for Energy Transition</h3>
-            <p class="muted">Pre-feasibility and combustion testing of renewable LPG mixtures with GASCO.</p>
-            <div class="tags"><span class="tag">Energy</span><span class="tag">H₂</span><span class="tag">R&D</span></div>
-          </div>
+        <article class="card project tilt">
+          <div class="thumb" role="img" aria-label="e-LPG project"></div>
+          <h3>e-LPG for Energy Transition</h3>
+          <p class="muted">Pre-feasibility and combustion testing of renewable LPG mixtures with GASCO.</p>
+          <div class="tags"><span class="tag">Energy</span><span class="tag">H₂</span><span class="tag">R&D</span></div>
         </article>
-        <article class="card project hover-lift" data-tags="pTx energy data">
-          <div class="thumb" role="img" aria-label="PtX analysis"></div>
-          <div class="body">
-            <h3>PtX & Synthetic Fuels</h3>
-            <p class="muted">Techno-economic analysis and combustion studies with COPEC & Lipigas.</p>
-            <div class="tags"><span class="tag">PtX</span><span class="tag">Techno-economics</span><span class="tag">Decarbonization</span></div>
-          </div>
+        <article class="card project tilt">
+          <div class="thumb" role="img" aria-label="PtX"></div>
+          <h3>PtX & Synthetic Fuels</h3>
+          <p class="muted">Techno-economic analysis and combustion studies with COPEC & Lipigas.</p>
+          <div class="tags"><span class="tag">PtX</span><span class="tag">Decarbonization</span><span class="tag">TEA</span></div>
         </article>
-        <article class="card project hover-lift" data-tags="esg data">
-          <div class="thumb" role="img" aria-label="Greener Atacama"></div>
-          <div class="body">
-            <h3>Greener Atacama</h3>
-            <p class="muted">ESG frameworks & sustainability indicators for SMEs (CORFO program).</p>
-            <div class="tags"><span class="tag">ESG</span><span class="tag">Sustainability</span><span class="tag">SMEs</span></div>
-          </div>
-        </article>
-        <article class="card project hover-lift" data-tags="data energy">
-          <div class="thumb" role="img" aria-label="Power BI dashboards"></div>
-          <div class="body">
-            <h3>Operational Dashboards</h3>
-            <p class="muted">Power BI for KPIs, reliability & SGI follow-up across terminals.</p>
-            <div class="tags"><span class="tag">Power BI</span><span class="tag">KPIs</span><span class="tag">ISO</span></div>
-          </div>
-        </article>
-        <article class="card project hover-lift" data-tags="energy">
-          <div class="thumb" role="img" aria-label="Hydrogen training"></div>
-          <div class="body">
-            <h3>Training: H₂V & Energy</h3>
-            <p class="muted">University courses on energy & project management (UTFSM).</p>
-            <div class="tags"><span class="tag">Teaching</span><span class="tag">H₂V</span><span class="tag">Projects</span></div>
-          </div>
-        </article>
-        <article class="card project hover-lift" data-tags="esg">
-          <div class="thumb" role="img" aria-label="ISO systems"></div>
-          <div class="body">
-            <h3>Integrated Systems</h3>
-            <p class="muted">ISO 9001/14001/45001 implementation, audits & continuous improvement.</p>
-            <div class="tags"><span class="tag">ISO</span><span class="tag">SGI</span><span class="tag">Audits</span></div>
-          </div>
+        <article class="card project tilt">
+          <div class="thumb" role="img" aria-label="ESG Atacama"></div>
+          <h3>Greener Atacama</h3>
+          <p class="muted">ESG frameworks & sustainability indicators for SMEs (CORFO program).</p>
+          <div class="tags"><span class="tag">ESG</span><span class="tag">Sustainability</span><span class="tag">SMEs</span></div>
         </article>
       </div>
     </section>
 
-    <section id="publications" class="card hover-lift" style="padding:20px">
-      <h2>Selected Publications</h2>
+    <section id="bootcamp" class="card">
+      <h2>Bootcamp — Code & Activities (Reference)</h2>
+      <p class="muted">Repositorio de referencia con notebooks, ejercicios y proyectos del bootcamp. La subcarpeta <code>/bootcamp/</code> no interfiere con el sitio.</p>
       <ul class="list">
-        <li><a href="https://doi.org/10.1016/j.combustflame.2025.113977" target="_blank" rel="noopener">The effect of pressure over soot maturity in laminar ethylene flames</a> — <i>Combustion and Flame</i>, 2025.</li>
-        <li><a href="https://doi.org/10.1016/j.proci.2024.105539" target="_blank" rel="noopener">Effect of hydrogen addition on soot maturity and volume fraction</a> — <i>Proc. Combustion Institute</i>, 2024.</li>
-        <li><a href="https://doi.org/10.1016/j.fuel.2023.128091" target="_blank" rel="noopener">Sooting propensity of gasoline/anisole blends</a> — <i>Fuel</i>, 2023.</li>
-        <li><a href="https://doi.org/10.1038/s41598-020-68256-z" target="_blank" rel="noopener">Candle flame soot sizing by laser-induced incandescence</a> — <i>Scientific Reports</i>, 2020.</li>
+        <li>📁 <a href="./bootcamp/">Abrir <b>bootcamp/</b></a> — landing con enlaces y descripción.</li>
+        <li>🧪 Estructura sugerida: <code>src/</code>, <code>notebooks/</code>, <code>datasets/</code>, <code>README.md</code>.</li>
+        <li>💡 Tip: coloca datasets pesados como enlaces externos (Kaggle/Drive).</li>
       </ul>
     </section>
 
-    <section id="experience" class="two">
-      <div class="card hover-lift" style="padding:20px">
-        <h2>Experience & Education</h2>
-        <div class="timeline">
-          <div class="titem">
-            <div><b>PhD in Applied Engineering</b> — UTFSM</div>
-            <div class="tmeta">Research: e-LPG (e-GL), soot, combustion diagnostics</div>
-          </div>
-          <div class="titem">
-            <div><b>Industry Projects Lead</b> — Gasco, COPEC, Lipigas, CMP</div>
-            <div class="tmeta">PtX, decarbonization, digital transformation, KPIs</div>
-          </div>
-          <div class="titem">
-            <div><b>Lecturer</b> — UTFSM</div>
-            <div class="tmeta">Energy, project management (PMI/Lean), ESG frameworks</div>
-          </div>
-          <div class="titem">
-            <div><b>MSc / Industrial Engineering</b></div>
-            <div class="tmeta">Automation, data, reliability & SGI</div>
-          </div>
+    <section id="publications" class="card">
+      <h2>Publications (ISI)</h2>
+      <ul class="list">
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.combustflame.2025.113977">The effect of pressure over soot maturity in laminar ethylene flames</a> — <i>Combustion and Flame</i>, 2025.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.proci.2024.105539">Effect of hydrogen addition on soot maturity and volume fraction of ethylene non-premixed flames under different oxygen indices</a> — <i>Proceedings of the Combustion Institute</i>, 2024.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.proci.2024.105534">Understanding soot production in a Jet A-1 laminar coflow non-premixed flame</a> — <i>Proceedings of the Combustion Institute</i>, 2024.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.expthermflusci.2023.111101">Maturity characterization of soot in laminar coflow diffusion flames of methane/anisole</a> — <i>Experimental Thermal and Fluid Science</i>, 2024.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.fuel.2023.128091">Sooting propensity and maturity of gasoline/anisole blends in a laminar coflow diffusion flame</a> — <i>Fuel</i>, 2023.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.proci.2022.10.013">Effect of maturity on soot volume fraction measurements using the AC-LII technique in a laminar coflow ethylene diffusion flame</a> — <i>Proceedings of the Combustion Institute</i>, 2022.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.applthermaleng.2022.118968">Determining spatially-resolved thermal radiation from non-intrusive measurements of soot properties</a> — <i>Applied Thermal Engineering</i>, 2022.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.3389/fmech.2021.744283">Soot Volume Fraction Measurements by Auto-Compensated LII in Diffusion Flames Generated by Ethylene Pool Fire</a> — <i>Frontiers in Mechanical Engineering</i>, 2021.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1038/s41598-020-68256-z">Candle flame soot sizing by planar time-resolved laser-induced incandescence</a> — <i>Scientific Reports</i>, 2020.</li>
+        <li><a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.fuel.2020.117030">Soot primary particle sizing in a n-heptane doped methane/air laminar coflow diffusion flame…</a> — <i>Fuel</i>, 2020.</li>
+      </ul>
+    </section>
+
+    <section id="experience" class="card">
+      <h2>Experience & Education</h2>
+      <div class="timeline">
+        <div class="titem">
+          <div><b>PhD in Applied Engineering</b> — UTFSM</div>
+          <div class="tmeta">Research: e-LPG (e-GL), soot, combustion diagnostics</div>
         </div>
-      </div>
-      <div class="card hover-lift" style="padding:20px">
-        <h2>Skills</h2>
-        <div class="skills" aria-label="skills">
-          <span class="skill">Python</span><span class="skill">SQL</span><span class="skill">MATLAB</span><span class="skill">Power BI</span>
-          <span class="skill">RETScreen</span><span class="skill">GRI/ISSB</span><span class="skill">ISO 9001/14001/45001</span>
-          <span class="skill">PMI</span><span class="skill">Lean</span><span class="skill">Hydrogen H₂V</span><span class="skill">PtX</span>
-          <span class="skill">Combustion</span><span class="skill">Data Modeling</span><span class="skill">ESG</span>
+        <div class="titem">
+          <div><b>Industry Projects Lead</b> — Gasco, COPEC, Lipigas, CMP</div>
+          <div class="tmeta">PtX, decarbonization, digital transformation, KPIs</div>
         </div>
-        <p class="muted" style="margin-top:10px">Languages: Spanish, English, Portuguese.</p>
+        <div class="titem">
+          <div><b>Lecturer</b> — UTFSM</div>
+          <div class="tmeta">Energy, Project Mgmt (PMI/Lean), ESG frameworks</div>
+        </div>
+        <div class="titem">
+          <div><b>MSc / Industrial Engineering</b></div>
+          <div class="tmeta">Automation, data, reliability & SGI</div>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="two">
-      <div class="card hover-lift" style="padding:20px">
-        <h2>About Me</h2>
-        <p class="muted">Industrial Engineer (MSc, PhD) passionate about clean energy technologies, Industry 4.0, and sustainability. Collaborations with Gasco, COPEC, Lipigas, CMP and CORIA-INSA Rouen. University lecturer at UTFSM.</p>
-        <ul class="list" style="margin-top:12px">
-          <li>⚙️ Engineering: Project design, automation, data analysis.</li>
-          <li>🌱 Energy: Hydrogen, PtX, emissions reduction, efficiency.</li>
-          <li>📊 Management: KPIs, continuous improvement, ISO/SGI.</li>
-        </ul>
-      </div>
-      <div class="card hover-lift" style="padding:20px">
-        <h2>Featured Links</h2>
-        <ul class="list">
-          <li><a href="https://github.com/ignaciovermon" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/iverdugo" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://orcid.org/0000-0003-3835-6021" target="_blank" rel="noopener">ORCID</a></li>
-          <li><a href="Resume_Ignacio_Verdugo.pdf" target="_blank" rel="noopener">CV (English)</a> · <a href="CV_Ignacio_Verdugo.pdf" target="_blank" rel="noopener">CV (Spanish)</a></li>
-        </ul>
-      </div>
+    <section id="files" class="card" style="padding:20px">
+      <h2>Files — Archivos del repositorio</h2>
+      <p class="muted">Listado generado automáticamente desde <code>main</code>. Haz clic en las carpetas para expandir.</p>
+      <div id="filesTree" role="tree" aria-label="Repository files"></div>
+      <p class="muted" id="filesNote" style="margin-top:10px"></p>
     </section>
 
-    <section id="contact">
-      <div class="card hover-lift" style="padding:20px">
-        <h2>Contact</h2>
-        <div class="contactgrid">
-          <div>
-            <p>Interested in collaborating?</p>
-            <p><button class="btn" id="copyBtn">📋 Copy Email</button></p>
-            <p class="muted" id="copyMsg" aria-live="polite"></p>
-            <div class="social">
-              <a href="mailto:ignacio.vermon@gmail.com" class="btn secondary">Email</a>
-              <a href="https://github.com/ignaciovermon" target="_blank" rel="noopener" class="btn secondary">GitHub</a>
-              <a href="https://www.linkedin.com/in/iverdugo" target="_blank" rel="noopener" class="btn secondary">LinkedIn</a>
-            </div>
-          </div>
-          <div>
-            <form action="mailto:ignacio.vermon@gmail.com" method="post" enctype="text/plain" class="list" style="padding:12px">
-              <label>Name<br><input name="name" required style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--chip); color:var(--text)"></label>
-              <label>Email<br><input name="email" type="email" required style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--chip); color:var(--text)"></label>
-              <label>Message<br><textarea name="message" rows="4" required style="width:100%; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--chip); color:var(--text)"></textarea></label>
-              <button class="btn" type="submit">Send</button>
-            </form>
-          </div>
-        </div>
-      </div>
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p class="muted">Industrial Engineer (MSc, PhD) passionate about clean energy technologies, Industry 4.0, and sustainability. Collaborations with Gasco, COPEC, Lipigas, CMP and CORIA-INSA Rouen. University lecturer at UTFSM.</p>
+      <ul class="list">
+        <li>⚙️ Engineering: Project design, automation, data analysis.</li>
+        <li>🌱 Energy: Hydrogen, PtX, emissions reduction, efficiency.</li>
+        <li>📊 Management: KPIs, continuous improvement, ISO/SGI.</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Interested in collaborating?</p>
+      <p><a class="btn primary" href="mailto:ignacio.vermon@gmail.com">✉️ Email</a></p>
+      <p class="muted">Phone: +56 9 8340 9594 · <a href="https://github.com/ignaciovermon" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/iverdugo" target="_blank">LinkedIn</a> · <a href="https://orcid.org/0000-0003-3835-6021" target="_blank">ORCID</a></p>
     </section>
 
     <footer>
@@ -340,47 +273,132 @@
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Scroll reveal for projects
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); observer.unobserve(e.target);} })
-    },{threshold:.12});
-    document.querySelectorAll('.project').forEach(el=>observer.observe(el));
-
-    // Filters
-    const grid = document.getElementById('projectGrid');
-    document.querySelectorAll('[data-filter]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const ft = btn.dataset.filter;
-        [...grid.children].forEach(card=>{
-          const tags = (card.getAttribute('data-tags')||'').split(' ');
-          const show = ft==='all' || tags.includes(ft);
-          card.style.display = show? 'block':'none';
+    // Intersection-based stagger reveal (cards + projects)
+    const reveal = (selector, delayStep=90) => {
+      const els = [...document.querySelectorAll(selector)];
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            const i = els.indexOf(e.target);
+            e.target.style.transition = `opacity .6s ${i*delayStep}ms, transform .6s ${i*delayStep}ms`;
+            e.target.classList.add('reveal');
+            io.unobserve(e.target);
+          }
         });
+      }, {threshold:.12});
+      els.forEach(el=>io.observe(el));
+    };
+    reveal('.card'); reveal('.project');
+
+    // Simple hover tilt (no lib)
+    const maxTilt = 10; // deg
+    document.querySelectorAll('.tilt').forEach(card=>{
+      let leaveTimeout;
+      card.addEventListener('mousemove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        const rx = ((y / r.height) - 0.5) * -2 * maxTilt;
+        const ry = ((x / r.width) - 0.5) *  2 * maxTilt;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(0)`;
+        card.style.opacity = 1;
+      });
+      card.addEventListener('mouseleave', ()=>{
+        clearTimeout(leaveTimeout);
+        leaveTimeout = setTimeout(()=>{ card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)'; }, 80);
       });
     });
 
-    // Theme toggle: cycle light/dark via data attr (respects system by default)
-    const themeBtn = document.getElementById('themeBtn');
-    let forceLight = false;
-    themeBtn.addEventListener('click', ()=>{
-      forceLight = !forceLight;
-      document.documentElement.style.colorScheme = forceLight? 'light' : 'dark';
-      document.body.style.background = forceLight
-        ? 'radial-gradient(1200px 600px at 80% -10%, rgba(11,119,255,.10), transparent 50%), radial-gradient(900px 500px at 10% 10%, rgba(0,183,111,.10), transparent 50%), #f6f8fb'
-        : '';
-    });
+    // ===== Files / Archivos del repo (via GitHub public API) =====
+    const OWNER = "ignaciovermon";
+    const REPO  = "ignaciovermon.github.io";
+    const BRANCH = "main";
+    const SITE_BASE = "https://ignaciovermon.github.io"; // user site root
 
-    // Copy email
-    const email = "ignacio.vermon@gmail.com";
-    const copyBtn = document.getElementById('copyBtn');
-    const copyMsg = document.getElementById('copyMsg');
-    copyBtn.addEventListener('click', async ()=>{
+    const $tree = document.getElementById('filesTree');
+    const $note = document.getElementById('filesNote');
+
+    function fmtBytes(bytes){
+      if(bytes == null) return '';
+      const units = ['B','KB','MB','GB']; let i=0, n=bytes;
+      while(n>=1024 && i<units.length-1){ n/=1024; i++; }
+      return n.toFixed(n<10 && i>0 ? 1 : 0) + ' ' + units[i];
+    }
+
+    async function fetchFolder(path=""){
+      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`;
+      const res = await fetch(url, {headers:{'Accept':'application/vnd.github+json'}});
+      if(!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
+      const data = await res.json();
+      // ensure directories first then files
+      return data.sort((a,b)=>{
+        if(a.type!==b.type) return a.type==='dir'?-1:1;
+        return a.name.localeCompare(b.name);
+      });
+    }
+
+    function rowFile(item, parentPath){
+      const fullPath = parentPath ? `${parentPath}/${item.name}` : item.name;
+      const siteURL = `${SITE_BASE}/${fullPath}`;
+      const rawURL  = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${fullPath}`;
+      const wrap = document.createElement('div');
+      wrap.className = 'file-row';
+      wrap.innerHTML = `
+        <span class="badge-mini">${item.type === 'dir' ? 'DIR' : 'FILE'}</span>
+        <span class="file-name">${item.name}</span>
+        <span class="file-size">${item.type==='file' ? fmtBytes(item.size) : ''}</span>
+        <span class="file-actions">
+          ${item.type==='file' ? `<a href="${siteURL}" target="_blank" rel="noopener">open</a>` : ''}
+          <a href="${item.type==='file' ? rawURL : item.html_url}" target="_blank" rel="noopener">${item.type==='file' ? 'raw' : 'view'}</a>
+        </span>
+      `;
+      return {wrap, fullPath};
+    }
+
+    function folderBlock(name){
+      const block = document.createElement('div');
+      block.className = 'file-row folder collapsed';
+      block.innerHTML = `
+        <span class="chev">▾</span>
+        <span class="badge-mini">DIR</span>
+        <span class="file-name"><b>${name}</b></span>
+      `;
+      const children = document.createElement('div');
+      children.className = 'tree-indent';
+      children.hidden = true;
+      return {block, children};
+    }
+
+    async function renderTree(container, path=""){
       try{
-        await navigator.clipboard.writeText(email);
-        copyMsg.textContent = "Email copied ✔";
-        setTimeout(()=> copyMsg.textContent="", 1800);
-      }catch(e){ copyMsg.textContent = email; }
-    });
+        const list = await fetchFolder(path);
+        for(const item of list){
+          if(item.type === 'dir'){
+            const {block, children} = folderBlock(item.name);
+            container.appendChild(block);
+            container.appendChild(children);
+            block.addEventListener('click', async ()=>{
+              const collapsed = children.hidden;
+              children.hidden = !collapsed;
+              block.classList.toggle('collapsed', !collapsed);
+              // lazy load
+              if(collapsed && !children.hasChildNodes()){
+                const sub = document.createElement('div');
+                children.appendChild(sub);
+                await renderTree(sub, path ? `${path}/${item.name}` : item.name);
+              }
+            }, {once:false});
+          }else{
+            const {wrap} = rowFile(item, path);
+            container.appendChild(wrap);
+          }
+        }
+        $note.textContent = `Origen: https://github.com/${OWNER}/${REPO}/tree/${BRANCH}`;
+      }catch(err){
+        $tree.innerHTML = `<p class="muted">No se pudo cargar el árbol de archivos. ${err.message}</p>`;
+      }
+    }
+
+    renderTree($tree, ""); // root
   </script>
 </body>
 </html>
